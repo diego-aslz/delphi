@@ -35,7 +35,7 @@ of software either. So, I started thinking and I thoght of another solution.
 
 ### My own proxy
 
-Using [Vagrant Up][1], I created a new little virtual machine using linux:
+Using Vagrant Up, I created a new little virtual machine using linux:
 
 {% highlight bash %}
 vagrant init
@@ -111,18 +111,15 @@ sudo service squid3 restart
 
 After that, I copied the downloaded update file `UP9000-BCUS98123_00-UNCHARTED2PATCH2-A0102-V0100-PE.pkg`
 to `/vagrant/tppkg/np/BCUS98123/BCUS98123_T9/d9a4490f00b04dae`. Then, when I tried
-to update again, my proxy redirected `b0.ww.np.dl.playstation.net` to my [NGinx][2],
+to update again, my proxy redirected `b0.ww.np.dl.playstation.net` to my NGinx,
 that offered the local file to the videogame. It downloaded it really fast (it
 was using my local network, after all).
 
 After that file, there was still another half a dozen files to be downloaded. Of course,
 I got an error right after the first file finished downloading and the device
-tried to get the second one, my [NGinx][2] didn't have it. I realized
+tried to get the second one, my NGinx didn't have it. I realized
 that the next files were following a pattern in the name: `PATCH2-A0102`, `PATCH3-A0103`,
 `PATCH4-A0104` and so on. So, I guessed the next URL's and downloaded them all
 up to `PATCH9-A0109` via my download manager in a few minutes (it ended up being
-half a GB in updates). Then, I copied them to the same folder so my [NGinx][2]
+half a GB in updates). Then, I copied them to the same folder so my NGinx
 could find them and started the update process again. It worked like a charm. =D
-
-[1]: http://www.vagrantup.com/
-[2]: http://nginx.com/
