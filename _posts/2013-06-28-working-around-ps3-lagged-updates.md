@@ -53,7 +53,7 @@ sudo vi squid.conf
 {% endhighlight %}
 
 In the configuration file, I changed `http_access deny all` to `http_access allow all`,
-cause I didn't need security, I needed just a "open legs" proxy. Then, in my
+cause I didn't need security, I needed just an "open legs" proxy. Then, in my
 Vagrantfile, I mapped the port 3128 on the host machine to the same port on the
 guest machine. And:
 
