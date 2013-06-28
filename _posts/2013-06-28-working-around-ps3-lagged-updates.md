@@ -29,13 +29,13 @@ it directly via local network to the PS3 in a very faster connection. This way,
 it would be possible to use a download manager to improve the speed.
 
 I started looking for it, since I didn't remember the name. Found it: PS3 Proxy
-Server GUI. However, it's for Windows. I hate Windows. I am a Linux user and
+Server GUI. However, it's for Windows. I don't like Windows. I'm a Linux user and
 lover. I didn't want to install `wine` package in my system just to use this little piece
-of software. So I started thinking and I thoght of another solution.
+of software either. So, I started thinking and I thoght of another solution.
 
 ### My own proxy
 
-Using Vagrant Up, I created a new little virtual machine using linux:
+Using [Vagrant Up][1], I created a new little virtual machine using linux:
 
 {% highlight bash %}
 vagrant init
@@ -109,17 +109,20 @@ sudo service nginx restart
 sudo service squid3 restart
 {% endhighlight %}
 
-After that, I copied the downloaded update file UP9000-BCUS98123_00-UNCHARTED2PATCH2-A0102-V0100-PE.pkg
-to /vagrant/tppkg/np/BCUS98123/BCUS98123_T9/d9a4490f00b04dae. Then, when I tried
-to update again. My proxy redirected b0.ww.np.dl.playstation.net to my NGinx,
+After that, I copied the downloaded update file `UP9000-BCUS98123_00-UNCHARTED2PATCH2-A0102-V0100-PE.pkg`
+to `/vagrant/tppkg/np/BCUS98123/BCUS98123_T9/d9a4490f00b04dae`. Then, when I tried
+to update again, my proxy redirected `b0.ww.np.dl.playstation.net` to my [NGinx][2],
 that offered the local file to the videogame. It downloaded it really fast (it
 was using my local network, after all).
 
 After that file, there was still another half a dozen files to be downloaded. Of course,
 I got an error right after the first file finished downloading and the device
-tried to get the second one, my NGinx didn't have it. I realized
-that the next files were following a pattern in the name: PATCH2-A0102, PATCH3-A0103,
-PATCH4-A0104 and so on. So, I guessed the next URL's and downloaded them all
-up to PATCH9-A0109 via my download manager in a few minutes (it ended up being
-half a GB in updates). Then, I copied them to the same folder so my NGinx
+tried to get the second one, my [NGinx][2] didn't have it. I realized
+that the next files were following a pattern in the name: `PATCH2-A0102`, `PATCH3-A0103`,
+`PATCH4-A0104` and so on. So, I guessed the next URL's and downloaded them all
+up to `PATCH9-A0109` via my download manager in a few minutes (it ended up being
+half a GB in updates). Then, I copied them to the same folder so my [NGinx][2]
 could find them and started the update process again. It worked like a charm. =D
+
+[1]: http://www.vagrantup.com/
+[2]: http://nginx.com/
