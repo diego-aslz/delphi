@@ -37,37 +37,37 @@ of software. So I started thinking and I thoght of another solution.
 
 Using Vagrant Up, I created a new little virtual machine using linux:
 
-```
+{% highlight SHELL %}
 vagrant init
 vagrant up
 vagrant ssh
-```
+{% endhighlight %}
 
 In it, then:
 
-```
+{% highlight SHELL %}
 sudo apt-get update
 sudo apt-get install squid -y
 cd /etc/squid3
 sudo vi squid.conf
-```
+{% endhighlight %}
 
 In the configuration file, I changed `http_access deny all` to `http_access allow all`,
 cause I didn't need security, I needed just a "legs open" proxy. Then, in my
 Vagrantfile, I mapped the port 3128 on the host machine to the same port on the
 guest machine. And:
 
-```
+{% highlight SHELL %}
 vagrant halt
 vagrant up
-```
+{% endhighlight %}
 
 Then, in my PS3, I configured the network settings to use the proxy on my local
 virtual machine. Inside my vm:
 
-```
+{% highlight SHELL %}
 tail -f /var/log/squid3/access.log
-```
+{% endhighlight %}
 
 Then, I put my PS3 to update again, and the Squid's log file showed me the URL
 of the file it was trying to get:
@@ -85,13 +85,13 @@ Now, the update was hosted on b0.ww.np.dl.playstation.net, so ...
 
 In /etc/hosts file in the VM I added:
 
-```
+{% highlight SHELL %}
 127.0.1.1       b0.ww.np.dl.playstation.net
-```
+{% endhighlight %}
 
 And in the console:
 
-```
+{% highlight SHELL %}
 sudo apt-get install nginx
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/sony
 sudo vi /etc/nginx/sites-available/sony
@@ -99,15 +99,15 @@ sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/sony /etc/nginx/sites-enabled/sony
 mkdir -p /vagrant/tppkg/np/BCUS98123/BCUS98123_T9/d9a4490f00b04dae
 sudo vi /etc/nginx/sites-available/sony
-```
+{% endhighlight %}
 
 In this last file, I uncommented `listen   80;` and set the root like this:
 `root /vagrant;`. Then:
 
-```
+{% highlight SHELL %}
 sudo service nginx restart
 sudo service squid3 restart
-```
+{% endhighlight %}
 
 After that, I copied the downloaded update file UP9000-BCUS98123_00-UNCHARTED2PATCH2-A0102-V0100-PE.pkg
 to /vagrant/tppkg/np/BCUS98123/BCUS98123_T9/d9a4490f00b04dae. Then, when I tried
