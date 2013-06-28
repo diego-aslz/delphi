@@ -13,7 +13,7 @@ said it would need to download.
 ## The problem
 
 My internet connection is not that bad, I have a 5 Mb connection. But, for some
-reason, PS3 videogames download updates very slowly and mine uses to stop downloading
+reason, PS3 videogames download updates very slowly and mine usually stops downloading
 from nothing. The download just stops at any time and I have to restart it.
 I think that's a problem with my router, but that's not the subject right now.
 
@@ -24,7 +24,7 @@ it succeded. Of course I didn't want that.
 ## The solution
 
 A friend of mine told me once that there was this little program that you could
-make work like a proxy to download updates to your PC and the download from
+make work like a proxy to download updates to your PC and then download from
 it directly via local network to the PS3 in a very faster connection. This way,
 it would be possible to use a download manager to improve the speed.
 
@@ -53,7 +53,7 @@ sudo vi squid.conf
 {% endhighlight %}
 
 In the configuration file, I changed `http_access deny all` to `http_access allow all`,
-cause I didn't need security, I needed just a "legs open" proxy. Then, in my
+cause I didn't need security, I needed just a "open legs" proxy. Then, in my
 Vagrantfile, I mapped the port 3128 on the host machine to the same port on the
 guest machine. And:
 
