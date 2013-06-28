@@ -37,7 +37,7 @@ of software. So I started thinking and I thoght of another solution.
 
 Using Vagrant Up, I created a new little virtual machine using linux:
 
-{% highlight SHELL %}
+{% highlight bash %}
 vagrant init
 vagrant up
 vagrant ssh
@@ -45,7 +45,7 @@ vagrant ssh
 
 In it, then:
 
-{% highlight SHELL %}
+{% highlight bash %}
 sudo apt-get update
 sudo apt-get install squid -y
 cd /etc/squid3
@@ -57,7 +57,7 @@ cause I didn't need security, I needed just a "legs open" proxy. Then, in my
 Vagrantfile, I mapped the port 3128 on the host machine to the same port on the
 guest machine. And:
 
-{% highlight SHELL %}
+{% highlight bash %}
 vagrant halt
 vagrant up
 {% endhighlight %}
@@ -65,11 +65,11 @@ vagrant up
 Then, in my PS3, I configured the network settings to use the proxy on my local
 virtual machine. Inside my vm:
 
-{% highlight SHELL %}
+{% highlight bash %}
 tail -f /var/log/squid3/access.log
 {% endhighlight %}
 
-Then, I put my PS3 to update again, and the Squid's log file showed me the URL
+Then, I put my PS3 to update again, and the Squid's log file bashowed me the URL
 of the file it was trying to get:
 
 ```
@@ -85,13 +85,13 @@ Now, the update was hosted on b0.ww.np.dl.playstation.net, so ...
 
 In /etc/hosts file in the VM I added:
 
-{% highlight SHELL %}
+{% highlight bash %}
 127.0.1.1       b0.ww.np.dl.playstation.net
 {% endhighlight %}
 
 And in the console:
 
-{% highlight SHELL %}
+{% highlight bash %}
 sudo apt-get install nginx
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/sony
 sudo vi /etc/nginx/sites-available/sony
@@ -104,7 +104,7 @@ sudo vi /etc/nginx/sites-available/sony
 In this last file, I uncommented `listen   80;` and set the root like this:
 `root /vagrant;`. Then:
 
-{% highlight SHELL %}
+{% highlight bash %}
 sudo service nginx restart
 sudo service squid3 restart
 {% endhighlight %}
