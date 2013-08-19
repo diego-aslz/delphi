@@ -5,7 +5,7 @@ auto: true
 rdiscount:
   extensions: [smart]
 title : Diego Selzlein
-production_url : http://nerde.github.com/delphi
+production_url : http://nerde.github.com/
 description: "Stories, tutorials, codes, projects, thoughts and other things by Diego Aguir Selzlein."
 disqus_shortname: nerde
 analytics: UA-42080782-1
